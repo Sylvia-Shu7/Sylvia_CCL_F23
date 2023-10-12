@@ -1,0 +1,28 @@
+body{
+    background-color:antiquewhite
+}
+h2 {
+    color: green;
+
+}
+img{
+    width:200px;
+
+}
+p{
+    font-family:'Times New Roman', Times, serif;
+    font-size:
+}
+.firstCapyCaption{
+    color:brown;
+}
+.secondCapyCaption{
+    color:rgb(208, 155, 22);
+}
+.superhighlight{
+    font-weight:bold;
+    color:rgb(208, 155, 22);
+    background-color: black;
+    text-decoration:overline;
+
+}
