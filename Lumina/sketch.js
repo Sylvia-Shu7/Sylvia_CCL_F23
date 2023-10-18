@@ -120,7 +120,7 @@ function draw() {
       yMouth.push(r / 4 + circle1Y);
     }
     pop();
-    r -= 0.035;
+    r -= 0.032;
     pop();
   }
 
@@ -133,63 +133,10 @@ function draw() {
 
     text("Feed Lumina Fe so it can reproduce!", 5, 45);
   }
-
-  //interactions
-  if (mouseIsPressed === true) {
-    //magnets
-//     if (r > 5) {
-//       noStroke();
-//       push();
-//       translate(mouseX, mouseY);
-//       if (
-//         (mouseX < width / 2 && mouseY > height / 2) ||
-//         (mouseX > width / 2 && mouseY < height / 2)
-//       ) {
-//         rotate(radians(-45));
-//       } else {
-//         rotate(radians(45));
-//       }
-
-//       fill("red");
-//       rect(-20, -10, 20, 10);
-//       fill("blue");
-//       rect(0, -10, 20, 10);
-//       pop();
-//     } else {
-//       //nourish Lumina with Fe
-//       if (
-//         mouseX > width / 4 &&
-//         mouseX < width - width / 4 &&
-//         mouseY > width / 4 &&
-//         mouseY < width - width / 4
-//       ) {
-//         push();
-//         translate(mouseX, mouseY);
-//         rectMode(CENTER);
-//         fill("grey");
-//         stroke(1);
-//         strokeWeight(1);
-//         rect(0, 0, 20, 20);
-//         pop();
-//         //small snakes
-//         noStroke();
-//         babyLumina(
-//           random(20, width - 20),
-//           random(20, height - 20),
-//           babyc[floor(random(0, 3))]
-//         );
-//         count++;
-//         if (count > 3) {
-//           //ink
-//           for (let i = 0; i < xMouth.length; i++) {
-//             ink(xMouth[i], yMouth[i]);
-//           }
-//         }
-//       }
-//     }
-  }
 }
-function mousePressed() {
+  //interactions
+  
+  function mousePressed() {
       if (r > 5) {
       noStroke();
       push();
@@ -211,10 +158,10 @@ function mousePressed() {
     } else {
       //nourish Lumina with Fe
       if (
-        mouseX > width / 4 &&
-        mouseX < width - width / 4 &&
-        mouseY > width / 4 &&
-        mouseY < width - width / 4
+        mouseX > width / 3 &&
+        mouseX < width - width / 3 &&
+        mouseY > height / 3 &&
+        mouseY < height - height / 3
       ) {
         push();
         translate(mouseX, mouseY);
@@ -232,7 +179,7 @@ function mousePressed() {
           babyc[floor(random(0, 3))]
         );
         count++;
-        if (count > 3) {
+        if (count > 8) {
           //ink
           for (let i = 0; i < xMouth.length; i++) {
             ink(xMouth[i], yMouth[i]);
@@ -265,17 +212,17 @@ function ink(x, y) {
   let xI = 0;
   let yI = 0;
 
-  for (let t = 0; t < 300; t++) {
+  for (let t = 0; t < 200; t+=13) {
     xI = xI - t / 100;
     yI = yI + t / 50;
-    console.log("sdvd");
+  
     fill(1);
     noStroke();
     circle(xI, yI, 2);
   }
    xI = 0;
    yI = 0;
-  for (let t = 0; t < 300; t++) {
+  for (let t = 0; t < 200; t+=13) {
     xI = xI + t / 100;
     yI = yI + t / 50;
     fill(1);
@@ -284,7 +231,7 @@ function ink(x, y) {
   }
    xI = 0 
    yI = 0;
-  for (let t = 0; t < 200; t++) {
+  for (let t = 0; t < 100; t+=7) {
     xI = xI - t / 150;
     yI = yI - t / 200;
     fill(1);
@@ -293,7 +240,7 @@ function ink(x, y) {
   }
      xI = 0;
      yI = 0;
-  for (let t = 0; t < 130; t++) {
+  for (let t = 0; t < 100; t+=7) {
     xI = xI + t / 100;
     yI = yI - t / 200;
     fill(1);
@@ -302,3 +249,4 @@ function ink(x, y) {
   }
   pop();
 }
+
