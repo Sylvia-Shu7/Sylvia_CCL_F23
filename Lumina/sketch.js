@@ -3,8 +3,6 @@ let x = 100;
 let y = 0;
 let circle1X, circle1Y;
 let min = 0.5;
-let div1 = 10;
-let div2 = 2 * div1;
 let moveX = 0;
 let moveY = 0;
 let size1 = 400;
