@@ -1,5 +1,6 @@
 h1{
-    color:blueviolet
+    font-style: "Times New Roman";
+    color:rgb(196, 126, 15)
 }
 #p5-container {
     position: absolute;
