@@ -27,6 +27,7 @@ function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent("p5-container")
   background(28, 125, 186, 150);
+  //submarine black chimney
   noStroke();
   fill(1, 20);
   for (let s = 0; s < height / 2; s += 14) {
@@ -40,41 +41,29 @@ function setup() {
 }
 
 function draw() {
-  // noStroke()
-  // fill(1,5)
-  // for(let s=0;s<height/2;s+=14){
-  //   ellipse(60,height-s,40+s*0.5,20+s*0.05)
-  //   ellipse(width-100,height-s,40+s*0.2,20+s*0.05)
-  // }
+ 
   textSize(20);
   noStroke();
   fill("#e5c480");
   text("Hold press to attract Lumina with magnets!", 5, 20);
 
+  //color change and moving direction
   c = "#c3c7c4";
   if (mouseIsPressed == true) {
     if (mouseX < width / 2 && mouseY < height / 2) {
       c = color1;
-      // moveX=-mouseX/div1
-      // moveY=-mouseY/div1
       moveX = moveX - min;
       moveY = moveY - min;
     } else if (mouseX < width / 2 && mouseY > height / 2) {
       c = color2;
-      // moveX=-mouseX/div1
-      // moveY=mouseY/div2
       moveX = moveX - min;
       moveY = moveY + min;
     } else if (mouseX > width / 2 && mouseY < height / 2) {
       c = color3;
-      // moveX=mouseX/div2
-      // moveY=-mouseY/div1
       moveX = moveX + min;
       moveY = moveY - min;
     } else if (mouseX > width / 2 && mouseY > height / 2) {
       c = color4;
-      // moveX=mouseX/div2
-      // moveY=mouseY/div2
       moveX = moveX + min;
       moveY = moveY + min;
     }
@@ -83,8 +72,8 @@ function draw() {
   stroke(c);
   strokeWeight(Weight);
 
-  //boby1
-  ///bulk track
+  //boby
+  //bulk track
   cosValue = 4 * cos(x);
   sinValue = 2.5 * sin(x);
   x = x + 0.05;
@@ -92,7 +81,7 @@ function draw() {
   circle1Y = map(sinValue, -1, 1, 742 - size2 + moveY, size2 + moveY);
   rantremble = random(-1, 1);
 
-  ///bulk
+  //bulk
   if (r > 5) {
     push();
     translate(390,0)
@@ -100,16 +89,15 @@ function draw() {
     randomtrans = random(-50, 20);
     fill(250, 240, 165 + randomtrans, 40 + randomtrans);
     noStroke();
-    console.log(circle1X ,circle1Y,sinValue,cosValue)
     circle(circle1X + rantremble , circle1Y + rantremble , r + 17);
 
-    ///red belly
+    //red belly
     push();
     translate(circle1X, circle1Y);
     fill("red");
     ellipse(r / 2, 0, r / 2, r - r / 3);
 
-    ///white mouth(random)
+    //white mouth(random)
     let ranPick = random(0, 100);
     if (ranPick < 7) {
       noFill();
@@ -123,20 +111,20 @@ function draw() {
     r -= 0.032;
     pop();
   }
-
   size1 -= 0.01;
   size2 -= 0.01;
+
+  //instruction2
   if (r < 5) {
     textSize(20);
     noStroke();
     fill("#e5c480");
-
     text("Feed Lumina Fe so it can reproduce!", 5, 45);
   }
 }
   //interactions
-  
   function mousePressed() {
+    //magnet
       if (r > 5) {
       noStroke();
       push();
@@ -156,7 +144,8 @@ function draw() {
       rect(0, -10, 20, 10);
       pop();
     } else {
-      //nourish Lumina with Fe
+
+      //iron(Fe)
       if (
         mouseX > width / 3 &&
         mouseX < width - width / 3 &&
@@ -171,7 +160,8 @@ function draw() {
         strokeWeight(1);
         rect(0, 0, 20, 20);
         pop();
-        //small snakes
+
+        //baby Lumina
         noStroke();
         babyLumina(
           random(20, width - 20),
@@ -179,8 +169,8 @@ function draw() {
           babyc[floor(random(0, 3))]
         );
         count++;
+        //ink
         if (count > 8) {
-          //ink
           for (let i = 0; i < xMouth.length; i++) {
             ink(xMouth[i], yMouth[i]);
           }
@@ -211,11 +201,9 @@ function ink(x, y) {
   translate(x+390, y);
   let xI = 0;
   let yI = 0;
-
   for (let t = 0; t < 200; t+=13) {
     xI = xI - t / 100;
     yI = yI + t / 50;
-  
     fill(1);
     noStroke();
     circle(xI, yI, 2);
