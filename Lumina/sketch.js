@@ -95,7 +95,7 @@ function draw() {
   ///bulk
   if (r > 5) {
     push();
-    translate(250,0)
+    translate(320,0)
     circle(circle1X + rantremble, circle1Y + rantremble, r);
     randomtrans = random(-50, 20);
     fill(250, 240, 165 + randomtrans, 40 + randomtrans);
@@ -261,7 +261,7 @@ function babyLumina(x, y, z) {
 
 function ink(x, y) {
   push();
-  translate(x, y);
+  translate(x+320, y);
   let xI = 0;
   let yI = 0;
 
