@@ -39,7 +39,7 @@ function setup() {
 }
 
 function draw() {
- 
+  //instruction1
   textSize(20);
   noStroke();
   fill("#e5c480");
