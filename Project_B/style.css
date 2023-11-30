@@ -1,7 +1,7 @@
 h1{
     margin: 50px,50px;
     position: relative;
-    color:rgb(246, 250, 253);
+    color:rgb(9, 9, 9);
     font-family: 'Roboto', sans-serif;
     font-size: 60px;
     
@@ -13,7 +13,7 @@ h1{
 p1{
     margin: 50px,50px;
     position:relative;
-    color:rgb(246, 250, 253);
+    color:rgb(18, 18, 18);
     font-family: 'Roboto', sans-serif;
 
 
@@ -21,21 +21,21 @@ p1{
 p2{
     margin: 50px,50px;
     position:relative;
-    color:rgb(246, 250, 253);
+    color:rgb(11, 11, 11);
     font-family: 'Roboto', sans-serif;
 
 }
 p3{
     margin: 50px,50px;
     position:relative;
-    color:rgb(82, 101, 115);
+    color:rgb(238, 210, 29);
     font-family: 'Roboto', sans-serif;
 
 }
 p4{
     margin: 50px,50px;
     position:relative;
-    color:rgb(246, 250, 253);
+    color:rgb(8, 8, 8);
     font-family: 'Roboto', sans-serif;
 
 }
