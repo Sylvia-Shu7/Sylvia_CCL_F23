@@ -90,7 +90,7 @@ class TimeBox{
         this.currentSecond = second();
         this.currentDate = this.currentYear + '-' + nf(this.currentMonth, 2) + '-' + nf(this.currentDay, 2);
         this.currentTime = this.currentHour + ':' + nf(this.currentMinute, 2) + ':' + nf(this.currentSecond, 2);
-        this.textPosX=-180;
+        this.textPosX=-280;
         this.textPosY=100;
         
     }
