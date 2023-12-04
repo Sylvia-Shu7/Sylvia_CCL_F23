@@ -1,19 +1,16 @@
 console.log("js is linked")
 
 let timebox;
-// let Energias=[];
 let PoX=[];
 let firstPoY=400;
 let verticalSpacing=700;
 let numEnergia=1;
 let interactionScene=0;
-let foods=[];
 let jump=0
 let jumpSpeed=25
 let dy=0;
 let counter=0
-let ropePos, checkSuccessfullySkipped
-// let img=[];
+let checkSuccessfullySkipped
 let backgroundPic
 
 function preload(){
@@ -43,9 +40,6 @@ function setup() {
 
 
 function draw() {
-  // ran=random[1,2,3]
-  // image(img1,200,100,200,100)
-  
     background(232, 204, 137)
     image(backgroundPic,width/2,height/2)
     timebox= new TimeBox(width-200,50)
@@ -176,6 +170,7 @@ class Energia{
       // this.jump+=this.jumpSpeed;
       //link scene1 part1
       // console.log("display"+interactionScene+this.ropeDirection)
+      
       //draw the click box
       stroke(1)
       strokeWeight(1)
@@ -320,8 +315,8 @@ class Energia{
         }
         pop()
         //check whether has successfully skipped or not
-        console.log(this.ropePos)
-        ropePos=this.ropePos
+        // console.log(this.ropePos)
+      
         // if(mouseIsPressed==true && this.ropePos>this.ropePosLowest-20){
         //   counter++
         // }
@@ -441,17 +436,7 @@ class Energia{
     }
         pop();
       }
-      // drawblush() {
-      //   push();
-      //   translate(this.x, this.ny);
-      //   noStroke();
-      //   fill(252, 3, 78, 70);
-      //   ellipse(-25, -33 + this.offsety, 13, 8);
-      //   ellipse(25, -33 + this.offsety, 13, 8);
-      //   pop();
-      // }
-      
-    
+
     update(){
       push();
       translate(this.x,this.y)
@@ -503,34 +488,6 @@ class Energia{
 
 
 
-// class Food{
-//   constructor(startX, startY) {
-//     this.x = startX;
-//     this.y = startY;
-//     this.ran=random[0,1,2]
-//     this.img1=img1;
-//     this.img2=img2;
-//     this.img3=img3;
-//     this.ran=[1,2,3]
-//   }
-
-// display(){
-//   push()
-//   translate(this.x,this.y)
-//   fill(1)
-//   circle(0,0,5)
-//   tint("brown")
-//   // image(this.ran,0,0,20,25)
-//   if(this.ran==1){
-//   image(this.img1,0,0,20,25)
-//   }else if(this.ran==2){
-//   image(this.img2,0,0,20,25)
-//   }else if(this.ran==3){
-//   image(this.img3,0,0,20,25)
-//   }
-//   pop()
-// }
-// }
 //jump rope
 // function mousePressed(){
 //   if (interactionScene==0){
@@ -552,7 +509,7 @@ function mousePressed(){
   if(dy>=0){
     dy=-jumpSpeed
   }
-  if(ropePos>200&&checkSuccessfullySkipped==true){
+  if(Energia.ropePos>200&&checkSuccessfullySkipped==true){
     counter++
   }
 
