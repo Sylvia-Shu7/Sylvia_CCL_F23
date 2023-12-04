@@ -1,17 +1,17 @@
 console.log("js is linked")
-
-let timebox;
+let timebox,img;
 
 
 function preload(){
-  
+  img=loadImage("images/time.jpg")
 
   
 }
 function setup() {
-    let cnv = createCanvas(windowWidth, windowHeight);
+    let cnv = createCanvas(600, 300);
     cnv.parent("canvasWrapper1");
     rectMode(CORNER);
+    imageMode(CENTER)
     
 }
 
@@ -19,10 +19,10 @@ function draw() {
   // ran=random[1,2,3]
   // image(img1,200,100,200,100)
   
-    background(232, 204, 137)
-    timebox= new TimeBox(width-200,50)
+    background(250)
+    image(img,width/2,height/2 )
+    timebox= new TimeBox(width/2,50)
     timebox.display();
-    
 }
 
 //TimeBox
@@ -42,7 +42,7 @@ class TimeBox{
         this.currentSecond = second();
         this.currentDate = this.currentYear + '-' + nf(this.currentMonth, 2) + '-' + nf(this.currentDay, 2);
         this.currentTime = this.currentHour + ':' + nf(this.currentMinute, 2) + ':' + nf(this.currentSecond, 2);
-        this.textPosX=-280;
+        this.textPosX=-190;
         this.textPosY=100;
         
     }
@@ -58,13 +58,13 @@ class TimeBox{
         rect(5,5,this.timeBoxWidth,this.timeBoxHeight);
         //questions
         fill(1)
+        textFont("Oswald")
         if(this.currentHour>6&&this.currentHour<11){
-          
-          text("Good morning! Remember to have breakfast!",this.textPosX,this.textPosY)
+          text("Morning! Did you have breakfast?",this.textPosX,this.textPosY)
         }else if(this.currentHour>=11&&this.currentHour<14){
           text("Did you enjoy your lunch?",this.textPosX,this.textPosY)
         }else if(this.currentHour>=14&&this.currentHour<18){
-          text("Good afternoon! DO some exercises!",this.textPosX,this.textPosY)
+          text("Let's do some exercises!",this.textPosX,this.textPosY)
         }else if(this.currentHour>=18&&this.currentHour<22){
           text("Did you enjoy your dinner?",this.textPosX,this.textPosY)
         }else {
