@@ -23,7 +23,6 @@ function setup() {
     cnv.parent("canvasWrapper2");
     rectMode(CORNER);
     imageMode(CENTER)
-    // image(backgroundPic,width/2,height/2)
 
     //positioning Energias & pushing Energias into array
     PoX.push(width/4);
@@ -51,18 +50,6 @@ function draw() {
         Energias[i].update();
         //  console.log(interactionScene);
     }
-// call foods
-// if(mouseX>PoX[1]-140&&mouseX<PoX[1]+140&&mouseY>firstPoY+verticalSpacing+20&&mouseY<firstPoY+verticalSpacing+96){
-// if (mouseIsPressed == true) {
-//   for (let i = 0; i < 1; i++) {
-//       foods.push(new Food(mouseX, mouseY));
-//   }
-// }
-// for (let i = 0; i < foods.length; i++) {
-//   // foods[i].update();
-//   // foods[i].checkOutOfCanvas();
-//   foods[i].display();
-// }
 }
 
 
@@ -239,8 +226,7 @@ class Energia{
       }
       //check whether Energia has skipped successfully or not
       // checkSuccessfullySkipped(){
-      //    if
-      // }
+    //}
       //scene1
       drawropeSkippingBehind(){
         this.updateropeSkippingBehind();
@@ -329,20 +315,6 @@ class Energia{
         // }
       }
        
-      // //scene 2
-      // havingMeal(){
-      //   push();
-      //   translate(this.x,this.y);
-      //   noStroke()
-      //   fill(140, 63, 4);
-      //   rect(-this.frameLength/2,20,this.frameLength,96);
-      //   pop();
-      // }
-
-      // //scene 3
-      // drinkingWater(){
-
-      // }
       //Energia
       drawbighead() {
         //head
@@ -448,41 +420,7 @@ class Energia{
         this.ny=0;
 
       }
-      // console.log(interactionScene)
-      // if(interactionScene==0){
-        // this.offsety=0
-        // console.log("jumping")
-        // if(mouseIsPressed==true){
-        //   // console.log("jumping")
-        //   // this.offsety += this.speed;
-        //   // if (this.offsety < -15){
-        //   //   this.speed=-2
-        //   //   this.speed = -this.speed;
-        //   // }else if(this.jump==0){
-        //   //   this.speed=0
-        //   // }
-        //   this.stopJumping=false
-        //   if(this.stopJumping=false){
-        //   this.offsety += this.speed*10;
-        //   if (this.offsety < -15 ) {
-        //   this.speed = -this.speed;
-        //   }else if(this.offsety==0){
-        //     this.stopJumping=true
-        //   }
-        // }
-        // }
-    //   }else{
-    // //up&down
-    // this.offsety += this.speed;
-    // if (this.offsety < -15 || this.offsety > 0) {
-    //   this.speed = -this.speed;
-    // }
-    // //swinging leg
-    // this.rotate4 += this.Plus;
-    // if (this.rotate4 > 90 || this.rotate4 < -90) {
-    //   this.Plus = -this.Plus;
-    //   this.Plus2 = -this.Plus2;
-    // }
+
   }
   }
 
