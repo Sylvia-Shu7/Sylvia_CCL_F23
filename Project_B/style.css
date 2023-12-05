@@ -1,6 +1,7 @@
 img{
     width:200px;
-    margin: 80px;
+    margin: 90px;
+    margin-bottom: 0px;
   
 }
 h1{
@@ -47,18 +48,34 @@ p2{
    
 
 }
+p3{
+    position: absolute;
+    top:900px;
+}
 
 p4{
-    position:relative;
+    position:absolute;
     color:rgb(18, 18, 18);
     font-family: 'Hedvig Letters Serif', serif;
     font-size: 25px;
-    padding-left: 1250px;
+    padding-right: 125px;
    
     /* display:flex;
     align-items:center; 
     justify-content:center; */
  
+}
+p5{
+    position:absolute;
+    top:800px;
+    right:20px;
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+}
+p6{
+    position:relative;
+    padding-left:50px;
+    padding-right:50px;
 }
 
 #canvasWrapper1{

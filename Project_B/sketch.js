@@ -21,7 +21,7 @@ function draw() {
   
     background(250)
     image(img,width/2,height/2 )
-    timebox= new TimeBox(width/2,50)
+    timebox= new TimeBox(width/2+60,25)
     timebox.display();
 }
 
@@ -42,8 +42,8 @@ class TimeBox{
         this.currentSecond = second();
         this.currentDate = this.currentYear + '-' + nf(this.currentMonth, 2) + '-' + nf(this.currentDay, 2);
         this.currentTime = this.currentHour + ':' + nf(this.currentMinute, 2) + ':' + nf(this.currentSecond, 2);
-        this.textPosX=-190;
-        this.textPosY=100;
+        this.textPosX=-220;
+        this.textPosY=140;
         
     }
     display(){
@@ -51,11 +51,11 @@ class TimeBox{
         translate(this.x,this.y);
         textSize(24);
         fill(1)
-        text(this.currentDate, 10, 25);
-        text(this.currentTime, 10, 50);
+        text(this.currentDate, 65, 23);
+        text(this.currentTime, 65, 46);
         noFill()
         strokeWeight(3)
-        rect(5,5,this.timeBoxWidth,this.timeBoxHeight);
+        rect(60,0,this.timeBoxWidth,this.timeBoxHeight);
         //questions
         fill(1)
         textFont("Oswald")
