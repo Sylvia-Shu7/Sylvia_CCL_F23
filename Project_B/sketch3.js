@@ -1,134 +1,161 @@
 console.log("js is linked")
 
-let bubbles=[]
-let sound
-let numBubbles=20;
-let cupCenterX,cupCenterY
-let ranPos
-function preload(){
-    sound=loadSound("water.wav")
-}
+let bubbles = [];
+let numBubble = 5;
+let cupCenterX, cupCenterY,cupBottomY;
+let ranPos, cup;
 
+
+function preload() {
+  sound = loadSound("water.wav");
+}
 function setup() {
     let cnv = createCanvas(windowWidth, 600);
     cnv.parent("canvasWrapper3");
-    cupCenterX=width/2-200
-    cupCenterY=300
-
-    
+    rectMode(CENTER)
+  cupCenterX = width / 2 - 200;
+  cupCenterY = 300;
+  cupBottomY=cupCenterY+140
+  cup = new Cup(cupCenterX, cupBottomY);
 
 }
 
-function draw(){
+
+function draw() {
     background(82, 152, 222);
-  ranPos=random(-50,50)
-  for(i=0; i<numBubbles; i++){
-     
-    bubbles[i]=new Bubble(cupCenterX+ranPos,cupCenterY+130);
-          
-    }
-  circle(cupCenterX,cupCenterY+140,10)
-  cup=new Cup(cupCenterX,cupCenterY+140)
-  cup.display()
-  cup.update()
-  for(i=0; i<numBubbles; i++){
-    bubbles[i].display()
-    bubbles[i].update()
-    // console.log("linked")
-  }
-    
-}
+  cup.display();
+  cup.update();
 
-class Bubble{
-    constructor(startX,startY){
-        this.x=startX
-        this.y=startY
-        this.r=random(5,15)
-        this.speed=4
-        this.deviation=random(-0.05,0.05)
-        this.halfHeight=130
+    if (mouseIsPressed == true) {
+        for (let i = 0; i < 1; i++) {
+            bubbles.push(new Bubble(cupCenterX, cupBottomY));
+        }
+    }
         
-      // console.log("linked1")
-    }
-    display(){
-        //draw bubbles
-      // console.log("linked2")
-    //   console.log(this.y)
-       if(mouseIsPressed==true &&this.y>-this.halfHeight+10){
-        stroke("white")
-       strokeWeight(this.r/10)
-       noFill()
-    //   console.log(this.x,this.y)
-       circle(this.x,this.y,this.r)
 
-       }
-       
-       
-    }
-    update(){
-    //    console.log("linked")
-      
-       if (mouseIsPressed==true){
-       
-          //bubbles go up
-       this.y-=this.speed
-       // this.x +=this.deviation
-       }
-    }
-}
-
-class Cup{
-    constructor(startX,startY){
-    this.x=startX
-    this.y=startY
-    this.bottomD=140
-    this.topD=240
-    this.temperature=16
-    }
-  display(){
-    push()
-    translate(this.x,this.y)
-    stroke(1)
-    strokeWeight(1.5)
-    fill(195, 212, 230,80)
-    arc(0,0,this.bottomD,20,0,PI)
-    noFill()
-    ellipse(0,0-280,this.topD,20)
-    line(0-this.topD/2,0-280,0-this.bottomD/2,0)
-    line(0+this.topD/2,0-280,0+this.bottomD/2,0)
-    //draw water
-    fill(195, 212, 230,80)
-    noStroke()
-      beginShape()
-      vertex(0-this.topD/2+6,0-240)
-      vertex(0-this.bottomD/2,0)
-      vertex(0+this.bottomD/2,0)
-      vertex(0+this.topD/2-6,0-240)
-      endShape()
-    pop()
-  }
-  update(){
-    //temperature higher
-     if (mouseIsPressed==true){
-         this.temperature= this.temperature+0.01
-       }else{
-         this.temperature=this.temperature-0.01
-       }
-       push()
-       strokeWeight(1)
-       textSize(20)
-         stroke(1)
-         text("Water Temperature="+this.temperature+"°",width/2+20,250)
-         if(this.temperature>15 &&this.temperature<18)
     
-         text("Researchers found that after exercice, 16° is a preferred temperature.",width/2+20,280)
-       pop()
+    for (let i = 0; i < bubbles.length; i++) {
+        bubbles[i].display();
+      bubbles[i].update();
+
+        
+    }
+
+
 }
-  
+class Bubble {
+    constructor(startX, startY) {
+        this.x = startX;
+        this.y = startY;
+        this.size = random(2, 10);
+        this.spX = random(-1.5, 1.5);
+        this.spY = random(-0.1,- 0.3);
+        
+        this.cChange = random(0, 360);
+        this.inWater=true;
+    }
+
+   
+
+    update() {
+        this.x += this.spX;
+        this.y -= this.spY;
+        
+      if(this.y<cupBottomY-240){
+        this.spY=0
+        this.spX = 0;
+        this.cChange=0
+        
+      }else{
+        this.spY = this.spY + 0.1;
+        this.spX = this.spX * 1.001;
+        this.inWater=false
+        
+      }
+
+    } display() {
+        push();
+        translate(this.x, this.y);
+        stroke(this.cChange, 255, 255,this.cChange);
+        noFill();
+        circle(0, 0, this.size);
+        pop();
+    }
 }
+class Cup {
+  constructor(startX, startY) {
+    this.x = startX;
+    this.y = startY;
+    this.bottomD = 140;
+    this.topD = 240;
+    this.temperature = 12;
+    this.waterDepth=-240
+    this.textColor=1
 
-
-function mousePressed(){
-    sound.play()
-
+    //clickBox
+    this.height=50
+    this.distance=10
+    this.heat=false
+    
   }
+  display() {
+    // console.log("linked")
+    push();
+    translate(this.x, this.y);
+    stroke(1);
+    strokeWeight(1.5);
+    fill(195, 212, 230, 80);
+    arc(0, 0, this.bottomD, 20, 0, PI);
+    noFill();
+    ellipse(0, -280, this.topD, 20);
+    line(-this.topD / 2,-280, -this.bottomD / 2, 0);
+    line(this.topD / 2,-280, this.bottomD / 2, 0);
+    //draw water
+    fill(195, 212, 230, 80);
+    noStroke();
+    beginShape();
+    vertex(-this.topD / 2 + 6, this.waterDepth);
+    vertex(-this.bottomD / 2, 0);
+    vertex(this.bottomD / 2, 0);
+    vertex(this.topD / 2 - 6, this.waterDepth);
+    endShape();
+    //draw click box
+    if(mouseX>-this.bottomD*0.8&&mouseX<this.bottomD*0.8&&mouseY>this.distance-this.height/2&&mouseY<this.distance+this.height/2){
+        this.heat=true
+    }
+    fill(148, 6, 20)
+    rect(0,this.distance+this.height,this.bottomD*0.8,this.height,5,5,5,5)
+    textSize(20)
+    stroke(1)
+    fill(1)
+    text("HEAT",-23,this.distance+this.height+5)
+    pop();
+  }
+  update() {
+    //temperature higher
+ 
+    if (mouseIsPressed == true&&this.temperature<20&&this.heat==true) {
+      this.temperature = this.temperature + 0.02;
+    } else if(mouseIsPressed == false&& this.temperature>13){
+      this.temperature = this.temperature - 0.02;
+    }
+
+    push();
+    strokeWeight(1);
+    textSize(30)
+    stroke(1);
+    text("Water Temperature=" + floor(this.temperature) + "°", width / 2 + 20, 250);
+    if (this.temperature > 16){
+      this.textColor="#04800c"
+      fill(this.textColor)
+      text(
+        "Researchers found that after exercice, 16° is a preferred temperature.",width / 2 + 20,280);
+      }
+    pop();
+  
+    }
+}
+
+function mousePressed() {
+  sound.play();
+}
