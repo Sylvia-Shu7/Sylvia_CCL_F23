@@ -1,15 +1,14 @@
 console.log("js is linked")
 
-let PoX=[];
+let PoX;
 let Energias=[]
 let firstPoY=350;
-let numEnergia=2;
-let interactionScene=0;
+let numEnergia=1;
 let jumpSpeed=10
 let fallSpeed=1
 let dy=0;
 let counter=0
-let checkSuccessfullySkipped
+let whetherToCheckOrNot
 let ropePos,backgroundPic,jumpSound,ropeStart
 
 function preload(){
@@ -22,46 +21,35 @@ function setup() {
     cnv.parent("canvasWrapper2");
     rectMode(CORNER);
     imageMode(CENTER)
-    // image(backgroundPic,width/2,height/2)
 
-    //positioning Energias & pushing Energias into array
-    PoX.push(width/4+120);
-    PoX.push(width-width/4-120);
-    // PoX.push(width/4);
-    // PoX.push(width-width/4);
-    for(i=0; i<numEnergia; i++){
-     
-      Energias[i]=new Energia(PoX[0]+i*150,firstPoY);
+    //positioning Energia
+    PoX=width/4+120;
+    Energias[0]=new Energia(PoX,firstPoY);
         
     }
 
-}
+
 
 
 function draw() {
     background(232, 204, 137)
-    text(mouseX+","+mouseY,mouseX,mouseY)
-    // image(backgroundPic,width/2,height/2)
-// call Energias
-    for(i=0; i<numEnergia; i++){
-        interactionScene=i;
-        Energias[i].display();
-        Energias[i].update();
-        //  console.log(interactionScene);
-    }
+    // text(mouseX+","+mouseY,mouseX,mouseY)
+    // call Energias
+    Energias[0].display();
+    Energias[0].update();
 }
-
 
 class Energia{
     constructor(startX,startY){
         this.x=startX;
         this.y=startY;
-        //frame
+        //rope turning machine
         this.frameLength=280;
         
         //clickBox
         this.boxWidth=80
         this.boxHeight=40
+
         //Energia
         this.width1 = 91;
         this.height1 = 82;
@@ -70,10 +58,7 @@ class Energia{
         this.rotate3 = -20;
         this.head = 50;;
         this.speed = -0.2;
-        this.Plus = 1;
-        this.Plus2 = 0.01;
         this.rotate4 = 0;
-
         this.ny=this.y;
         this.transparency=500;
 
@@ -85,7 +70,6 @@ class Energia{
         this.ropePosLowest=-this.ropePosHighest;
         this.ropeSpeed=-6;
         this.ropeStart=false
-        this.fail=false
         
     }
 
@@ -97,37 +81,43 @@ class Energia{
       rect(this.x+200,this.y-100,this.boxWidth,this.boxHeight)
       fill(1)
       text("Start", this.x+220,this.y-75)
+      //call instruction method& start rope turning and counting
       this.instruction();
       if(mouseIsPressed==true&& mouseX>this.x+200&& mouseX<this.x+250+this.boxWidth&&mouseY>this.y-100&&mouseY<this.y-100+this.boxHeight){
         this.ropeStart=true
         counter=0
-        
       }
-      if(this.ropeStart==true  && interactionScene==0&& this.ropeDirection==-1){
+      if(this.ropeStart==true  && this.ropeDirection==-1){
+        //draw rope behind Energia
         this.drawropeSkippingBehind();
-        checkSuccessfullySkipped=false
+        //because when we want to check whether Energia has successfully skipped or not.
+        //in this case, we only have to do the check when rope is in front of Energia
+        //hence, when rope is behind Energia, we don't do the check
+        whetherToCheckOrNot=false
       } 
+      //draw Energia
         this.drawbighead();
         this.drawbigbody();
-        //link scene1 part2
-        // console.log(this.ropeStart)
-        if(interactionScene==0 && this.ropeDirection==1){
+
+      //draw rope in front of Energia
+        if(this.ropeDirection==1){
           this.drawropeSkippingFront();
-          checkSuccessfullySkipped=true
+          whetherToCheckOrNot=true
         }
-          ropeStart=this.ropeStart
+        //get this variable outside of the class
+        ropeStart=this.ropeStart
         
     }
       
 
-      //instruction and the sope
+      //instruction and the rope turning machine
       instruction(){
         push();
         translate(this.x, this.y);
-
+        //instruction
         textSize(30)
         text("You've skipped:"+counter,160,40)
-        // console.log(this.x,this.y);
+        //rope turning machine
         fill("brown")
         circle(-this.frameLength/2,0,20)
         circle(this.frameLength/2,0,20)
@@ -156,20 +146,18 @@ class Energia{
       }
       updateropeSkippingBehind(){
         // console.log("update of rope part 1 is linked")
-        //rocking the rope
+        //turninging the rope
         push()
         translate(this.x,this.y)
         this.ropePos+=this.ropeSpeed;
-        // console.log(this.ropePos)
+
         //change from bottom half screen to top half screen
         if(this.ropePos==0){
           this.checkRopeIsOnTopHalfScreen=true
         }
+
         //rope comes to in front of Energia
         if(this.ropePos==this.ropePosHighest){
-          // if(this.ny>=0){
-          //   this.ropeStart=false;
-          // }
           this.ropeDirection=-this.ropeDirection;
           this.ropeSpeed=-this.ropeSpeed;
         }
@@ -199,13 +187,18 @@ class Energia{
         //  console.log("update of rope part 2 is linked")
          push()
         translate(this.x,this.y)
-         //rocking the rope
+
+         //turning the rope
         this.ropePos+=this.ropeSpeed;
+
         //change from top half screen to bottom half screen
         if(this.ropePos==0){
           this.checkRopeIsOnTopHalfScreen=false
         }
+
+        //rope goes behind Energia
         if(this.ropePos==this.ropePosLowest){
+          //fail to jump over, rope stops
            if(this.ny==0){
             this.ropeStart=false
             ropeStart=this.ropeStart
@@ -214,7 +207,7 @@ class Energia{
           this.ropeSpeed=-this.ropeSpeed;
           
         }
-        //check skipping is successful in the function mousePressed())
+       //get this variable outside of the class because it will be used in the function mousePressed()
         ropePos=this.ropePos
         pop()
 
@@ -313,7 +306,7 @@ class Energia{
     }
         pop();
       }
-
+    //Energia movement
     update(){
       push();
       translate(this.x,this.y)
@@ -324,18 +317,17 @@ class Energia{
         dy=0
         this.ny=0;
         this.y=firstPoY
-
       }
       
   }
   }
-
+//jump
 function mousePressed(){
   jumpSound.play();
   if(dy>=0){
     dy=-jumpSpeed
   }
-  if(ropePos>190&&checkSuccessfullySkipped==true&&ropeStart!=false){
+  if(ropePos>190&&whetherToCheckOrNot==true&&ropeStart!=false){
     counter++
   }
 

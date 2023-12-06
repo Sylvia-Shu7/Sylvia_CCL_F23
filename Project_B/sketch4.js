@@ -1,10 +1,8 @@
 console.log("js is linked")
-let energia, x, y,g,sinValue;
-let sinInput=0
-let a=1.1
-let counter=0
+let energia, x, y, g, sinValue;
+let sinInput = 0
 function setup() {
-    let cnv = createCanvas(windowWidth, 600);
+  let cnv = createCanvas(windowWidth, 600);
   cnv.parent("canvasWrapper4");
   rectMode(CENTER)
   energia = new Energia(300, 300);
@@ -12,9 +10,11 @@ function setup() {
 
 function draw() {
   background(99, 176, 77);
-  sinInput+=0.15
-  sinValue=sin(sinInput)
-  g=map(sinValue,-1,1,0,400)
+  //make changing transparency with sin
+  sinInput += 0.15
+  sinValue = sin(sinInput)
+  g = map(sinValue, -1, 1, 0, 400)
+  //call Energia
   energia.display();
   energia.update();
   energia.detectDirection();
@@ -30,18 +30,16 @@ class Energia {
     this.rotate2 = -10;
     this.rotate3 = -20;
     this.head = 50;
-    this.Plus = 1;
-    this.Plus2 = 0.01;
     this.rotate4 = 0;
+    //arm doesn't change its transparency
     this.transparency = 500;
     this.speed1 = 6;
     this.speed2 = 8;
+    //arm direction
     this.toRightBottom = false;
     this.toRightTop = false;
     this.toLeftBottom = false;
     this.toLeftTop = false;
-    //accelerate
-    this.buttonR=100
   }
   detectDirection() {
     if (this.speed1 > 0 && this.speed2 > 0) {
@@ -67,16 +65,7 @@ class Energia {
     }
   }
   display() {
-    if(mouseIsPressed==true){
-      fill("red")  
-    }else{
-        fill("white")
-    }
-    circle(width/2,height/2,this.buttonR)
-    stroke(1)
-    fill(1)
-    textSize(12)
-    text("Accelerate",width/2-30,height/2)
+    //translate and then draw the body
     push();
     translate(this.x, this.y);
     this.drawbighead();
@@ -85,8 +74,6 @@ class Energia {
     // console.log(this.sinValue)
   }
   update() {
-    // this.sinInput+=0.1
-    // console.log(this.sinInput)
     this.x = this.x + this.speed1;
     this.y = this.y + this.speed2;
     if (this.x > width || this.x < 0) {
@@ -202,21 +189,6 @@ class Energia {
       ellipse(0, 0, 10, 43);
       pop();
     }
-    
+
   }
 }
-function mousePressed(){
-    
-     for(let i=1;i<3;i++){
-        if(counter<5){
-         energia.speedi=energia.speedi*a
-        counter++   
-    }else{
-    textSize(40)
-    text("it's too fast, are you able to follow?",width/2-200,height/2)
-    // counter=0
-    energia.speedi=energia.speedi/1.61051
-    }
-    }
-}
-   
