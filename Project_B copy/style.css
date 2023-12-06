@@ -1,0 +1,98 @@
+img{
+    width:200px;
+    margin: 90px;
+    margin-bottom: 0px;
+  
+}
+h1{
+    margin: 50px,50px;
+    position: relative;
+    color:rgb(9, 9, 9);
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    
+    
+    /* background-color: antiquewhite;
+    outline: black 1px solid;
+    outline-style: dotted; */
+
+}
+p1{
+    margin: 50px,50px;
+    position:relative;
+    color:rgb(18, 18, 18);
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:50px
+   
+
+
+}
+p2{
+    margin: 50px;
+    margin-bottom: 0px;
+    position:relative;
+    color:rgb(18, 18, 18);
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+    display:flex;
+    align-items:center; 
+    justify-content:center;
+    padding-left:50px
+   
+
+}
+p3{
+    position: absolute;
+    top:900px;
+}
+
+p4{
+    position:absolute;
+    color:rgb(18, 18, 18);
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+    padding-right: 125px;
+   
+    /* display:flex;
+    align-items:center; 
+    justify-content:center; */
+ 
+}
+p5{
+    position:absolute;
+    top:800px;
+    right:20px;
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+}
+p6{
+    position:relative;
+    padding-left:50px;
+    padding-right:50px;
+}
+p7{
+    position:absolute;
+    top:900px;
+    right:20px;
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+}
+
+#canvasWrapper1{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    padding-bottom:50px;
+
+}
+
+ 

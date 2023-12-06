@@ -77,6 +77,13 @@ p6{
     padding-left:50px;
     padding-right:50px;
 }
+p7{
+    position:absolute;
+    top:900px;
+    right:20px;
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+}
 
 #canvasWrapper1{
     position:relative;

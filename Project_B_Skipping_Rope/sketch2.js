@@ -216,7 +216,7 @@ class Energia{
         translate(this.x, this.y);
 
         textSize(30)
-        text("Click to help Energia skipping rope!",280,0)
+       
         text("You've skipped:"+counter,280,40)
         // console.log(this.x,this.y);
         noFill()

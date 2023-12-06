@@ -88,7 +88,7 @@ class Cup {
     this.y = startY;
     this.bottomD = 140;
     this.topD = 240;
-    this.temperature = 12;
+    this.temperature = 15.9;
     this.waterDepth=-240
     this.textColor=1
 
@@ -149,7 +149,8 @@ class Cup {
       this.textColor="#04800c"
       fill(this.textColor)
       text(
-        "Researchers found that after exercice, 16° is a preferred temperature.",width / 2 + 20,280);
+        "Researchers found that after exercice,",width / 2 + 20,280);
+     text("16° is a preferred temperature.",width / 2 + 20, 310);
       }
     pop();
   
